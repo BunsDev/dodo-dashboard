@@ -1,16 +1,21 @@
 import { gql, useQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
 import PoolOverview from "./PoolOverview";
+import { getTimestampRange } from "../utils";
+import { getPoolQuery } from "../lib/queries";
+import useBlockTimes from "./hooks/useBlockTimes";
 
 export const ALL_POOLS_QUERY = gql`
   query allPools {
     pairs {
       id
       baseToken {
+        id
         symbol
         name
       }
       quoteToken {
+        id
         symbol
         name
       }
@@ -18,7 +23,9 @@ export const ALL_POOLS_QUERY = gql`
   }
 `;
 
-export default function PostList() {
+export default function Pools() {
+  const timestamps = getTimestampRange();
+
   const { loading, error, data, fetchMore, networkStatus } = useQuery(
     ALL_POOLS_QUERY
   );
@@ -31,7 +38,7 @@ export default function PostList() {
   return (
     <section>
       {pairs.map((pair) => (
-        <PoolOverview id={pair.id} />
+        <PoolOverview key={pair.id} id={pair.id} />
       ))}
     </section>
   );

@@ -1,58 +1,43 @@
-import { gql, useQuery, NetworkStatus } from "@apollo/client";
+import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
+import { getTimestampRange } from "../utils";
+import { getPoolQuery } from "../lib/queries";
+import useBlockTimes from "./hooks/useBlockTimes";
 
 export const ALL_POSTS_QUERY = gql`
   query poolDetail($id: ID!) {
-    pair(id: $id) {
+    pair(id: $id, block: { number: 11006027 }) {
       id
       baseToken {
-        id
         symbol
-        name
         decimals
-        totalSupply
-        tradeVolume
         tradeVolumeUSD
         txCount
         totalLiquidity
       }
       quoteToken {
-        id
         symbol
-        name
         decimals
-        totalSupply
-        tradeVolume
-        tradeVolumeUSD
         txCount
         totalLiquidity
       }
-      midPrice
-      volumeBaseToken
-      volumeQuoteToken
-      txCount
-      createdAtTimestamp
-      createdAtBlockNumber
     }
   }
 `;
 
 export default function PostList({ id }) {
-  const { loading, error, data, fetchMore, networkStatus } = useQuery(
-    ALL_POSTS_QUERY,
-    {
-      variables: { id },
-    }
+  const timestamps = getTimestampRange();
+
+  const { data: blockTimes, loadingBlockTimes } = useBlockTimes(timestamps);
+
+  const { loading, error, data, networkStatus } = useQuery(
+    getPoolQuery(id, blockTimes)
   );
 
   if (error) return <ErrorMessage message="Error loading posts." />;
   if (loading) return <div>Loading</div>;
 
-  const { pair } = data;
+  console.log(data);
 
-  return (
-    <section>
-      {pair.baseToken.symbol}-{pair.quoteToken.symbol}
-    </section>
-  );
+  return <section></section>;
 }
