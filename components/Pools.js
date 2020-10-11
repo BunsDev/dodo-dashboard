@@ -28,7 +28,7 @@ export default function Pools() {
   const { pairs } = data;
 
   if (error) return <ErrorMessage message="Error loading posts." />;
-  if (loading && !loadingMorePosts) return <div>Loading</div>;
+  if (loading && !loadingMorePosts) return <div>Loading…</div>;
 
   return (
     <section>
