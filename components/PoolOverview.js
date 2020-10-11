@@ -1,8 +1,7 @@
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
-import { getTimestampRange } from "../utils";
 import { getPoolQuery } from "../lib/queries";
-import useBlockTimes from "./hooks/useBlockTimes";
+import injectBlockTimes from "./injectBlockTimes";
 
 export const ALL_POSTS_QUERY = gql`
   query poolDetail($id: ID!) {
@@ -25,11 +24,7 @@ export const ALL_POSTS_QUERY = gql`
   }
 `;
 
-export default function PostList({ id }) {
-  const timestamps = getTimestampRange();
-
-  const { data: blockTimes, loadingBlockTimes } = useBlockTimes(timestamps);
-
+const PostList = ({ blockTimes, id }) => {
   const { loading, error, data, networkStatus } = useQuery(
     getPoolQuery(id, blockTimes)
   );
@@ -40,4 +35,6 @@ export default function PostList({ id }) {
   console.log(data);
 
   return <section></section>;
-}
+};
+
+export default injectBlockTimes(PostList);
