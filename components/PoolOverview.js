@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import dayjs from "dayjs";
 import ErrorMessage from "./ErrorMessage";
 import { getPoolQuery } from "../lib/queries";
 import injectBlockTimes from "./injectBlockTimes";
@@ -38,9 +39,10 @@ const getVolumeData = (data, blockTimes) => {
       (b) => b.number === blockKey.replace("t", "")
     );
     result.push({
-      name: blockTime.timestamp,
-      volume:
-        value.baseToken.tradeVolumeUSD - previousValue.baseToken.tradeVolumeUSD,
+      name: dayjs.unix(blockTime.timestamp).format("YYYY-MM-DD"),
+      volume: Math.round(
+        value.baseToken.tradeVolumeUSD - previousValue.baseToken.tradeVolumeUSD
+      ),
     });
   }
   return result;
