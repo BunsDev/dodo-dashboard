@@ -1,10 +1,11 @@
 import Layout from "../components/Layout";
-import Pools, { ALL_POOLS_QUERY } from "../components/Pools";
+import { ALL_POOLS_QUERY } from "../components/Pools";
+import Home from "../components/Home";
 import { initializeApollo } from "../lib/apolloClient";
 
 const IndexPage = () => (
   <Layout>
-    <Pools />
+    <Home />
   </Layout>
 );
 
