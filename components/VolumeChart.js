@@ -1,13 +1,22 @@
-import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const VolumeChart = ({ data }) => {
   return (
-    <BarChart dataKey="volume" data={data} width={800} height={400}>
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Bar dataKey="volume" fill="#cc0" />
-    </BarChart>
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart dataKey="volume" data={data}>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="volume" fill="#cc0" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 
