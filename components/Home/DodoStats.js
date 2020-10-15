@@ -28,6 +28,12 @@ const getVolumeData = (data, blockTimes) => {
   return result;
 };
 
+const Card = ({ children }) => (
+  <div className="card" style={{ minHeight: "460px" }}>
+    {children}
+  </div>
+);
+
 const DodoStats = ({ blockTimes }) => {
   const { loading, error, data } = useQuery(
     getPoolQuery("0x8876819535b48b551c9e97ebc07332c7482b4b2d", blockTimes),
@@ -37,18 +43,24 @@ const DodoStats = ({ blockTimes }) => {
   );
 
   if (error) return <ErrorMessage message="Error loading posts." />;
-  if (loading) return <div>Loading</div>;
+  if (loading)
+    return (
+      <section className="flex space-x-10">
+        <Card />
+        <Card />
+      </section>
+    );
 
   const volumeData = getVolumeData(data, blockTimes);
 
   return (
     <section className="flex space-x-10">
-      <div className="bg-white flex-1 rounded-3xl px-8 py-10 overflow-hidden">
+      <Card>
         <LiquidityChart data={volumeData} />
-      </div>
-      <div className="bg-white flex-1 rounded-3xl px-8 py-10 overflow-hidden">
+      </Card>
+      <Card>
         <VolumeChart data={volumeData} />
-      </div>
+      </Card>
     </section>
   );
 };

@@ -18,3 +18,7 @@ h6 {
 h1 {
   @apply text-5xl;
 }
+
+.card {
+  @apply bg-white flex-1 rounded-3xl px-8 py-10 overflow-hidden;
+}
