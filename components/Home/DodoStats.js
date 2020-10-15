@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import ErrorMessage from "../ErrorMessage";
 import { getPoolQuery } from "../../lib/queries";
 import injectBlockTimes from "../injectBlockTimes";
+import LiquidityChart from "../LiquidityChart";
 import VolumeChart from "../VolumeChart";
 
 const getVolumeData = (data, blockTimes) => {
@@ -18,8 +19,8 @@ const getVolumeData = (data, blockTimes) => {
       (b) => b.number === blockKey.replace("t", "")
     );
     result.push({
-      name: dayjs.unix(blockTime.timestamp).format("YYYY-MM-DD"),
-      volume: Math.round(
+      time: dayjs.unix(blockTime.timestamp).format("YYYY-MM-DD"),
+      value: Math.round(
         value.baseToken.tradeVolumeUSD - previousValue.baseToken.tradeVolumeUSD
       ),
     });
@@ -43,7 +44,7 @@ const DodoStats = ({ blockTimes }) => {
   return (
     <section className="flex space-x-10">
       <div className="bg-white flex-1 rounded-3xl px-8 py-10">
-        <VolumeChart data={volumeData} />
+        <LiquidityChart data={volumeData} />
       </div>
       <div className="bg-white flex-1 rounded-3xl px-8 py-10">
         <VolumeChart data={volumeData} />

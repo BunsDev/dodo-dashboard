@@ -1,10 +1,9 @@
 import { chartTypes } from "../constants";
 import dynamic from "next/dynamic";
 
-const VolumeChart = ({ data }) => {
+const LiquidityChart = ({ data }) => {
   const TradingViewChart = dynamic(() => import("./TradingViewChart"));
-
-  return <TradingViewChart data={data} type={chartTypes.BAR} />;
+  return <TradingViewChart data={data} type={chartTypes.LINE} />;
 };
 
-export default VolumeChart;
+export default LiquidityChart;
