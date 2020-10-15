@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import ErrorMessage from "./ErrorMessage";
-import PoolOverview from "./PoolOverview";
+import ErrorMessage from "../ErrorMessage";
 
 export const ALL_POOLS_QUERY = gql`
   query allPools {
@@ -21,9 +20,7 @@ export const ALL_POOLS_QUERY = gql`
 `;
 
 export default function Pools() {
-  const { loading, error, data, fetchMore, networkStatus } = useQuery(
-    ALL_POOLS_QUERY
-  );
+  const { loading, error, data } = useQuery(ALL_POOLS_QUERY);
 
   const { pairs } = data;
 
@@ -33,7 +30,7 @@ export default function Pools() {
   return (
     <section>
       {pairs.map((pair) => (
-        <PoolOverview key={pair.id} id={pair.id} />
+        <div>{pair.id}</div>
       ))}
     </section>
   );
