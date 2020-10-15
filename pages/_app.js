@@ -8,6 +8,10 @@ export default function App({ Component, pageProps }) {
   return (
     <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      />
     </ApolloProvider>
   );
 }

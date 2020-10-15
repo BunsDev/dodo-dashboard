@@ -109,8 +109,8 @@ const VolumeChart = ({ data, label, type }) => {
 
   return (
     <div ref={containerRef}>
-      <div className="pl-4 font-medium text-gray-600">{label}</div>
-      <div className="pl-4 text-4xl font-bold leading-none mb-6">
+      <div className="pl-4 font-medium mb-1 text-gray-600">{label}</div>
+      <div className="pl-4 text-4xl font-bold leading-none mb-8">
         {fullDollarFormatter(tooltipValue)}
       </div>
       <div ref={ref}></div>

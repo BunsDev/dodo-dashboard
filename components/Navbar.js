@@ -9,11 +9,11 @@ const navLinks = [
   },
   {
     label: "Pools",
-    href: "/pools",
+    href: "#",
   },
   {
     label: "Token",
-    href: "/token",
+    href: "#",
   },
 ];
 
@@ -28,7 +28,7 @@ const Navbar = () => {
         }
 
         .nav-link {
-          @apply text-gray-500 flex flex-col text-sm items-center justify-center h-20 rounded;
+          @apply text-gray-500 flex flex-col text-xs items-center justify-center h-20 rounded transition-all duration-200;
         }
 
         .nav-link .icon {
