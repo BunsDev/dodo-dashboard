@@ -26,3 +26,7 @@ h2 {
 .card {
   @apply bg-white flex-1 mb-10 rounded-3xl px-8 py-10 overflow-hidden;
 }
+
+th {
+  @apply text-left;
+}
