@@ -44,7 +44,7 @@ const Navbar = () => {
         }
 
         .nav-link.active {
-          @apply text-black bg-yellow-400;
+          @apply text-black bg-yellow-500;
         }
       `}</style>
 
