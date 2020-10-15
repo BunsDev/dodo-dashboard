@@ -17,6 +17,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-use": "^15.3.4",
     "recharts": "^1.8.5",
     "tailwindcss": "^1.9.1"
   },

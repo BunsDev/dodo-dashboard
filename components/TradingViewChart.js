@@ -1,7 +1,8 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Numeral from "numeral";
 import { createChart } from "lightweight-charts";
 import { chartTypes } from "../constants";
+import { useMeasure } from "react-use";
 
 const dollarFormatter = (num) => {
   return Numeral(num).format("$0.[00]a");
@@ -54,14 +55,19 @@ const renderChart = (ref, data, type) => {
   }
 
   chart.timeScale().fitContent();
+
+  return chart;
 };
 
 const VolumeChart = ({ data, type }) => {
   const ref = useRef();
+  const [chart, setChart] = useState(null);
+  const [containerRef, { width }] = useMeasure();
 
   useEffect(() => {
     if (ref.current) {
-      renderChart(ref, data, type);
+      const renderedChart = renderChart(ref, data, type);
+      setChart(renderedChart);
     }
 
     return () => {
@@ -71,7 +77,18 @@ const VolumeChart = ({ data, type }) => {
     };
   }, [ref]);
 
-  return <div ref={ref}></div>;
+  useEffect(() => {
+    if (chart) {
+      chart.resize(width, 300);
+      chart.timeScale().fitContent();
+    }
+  }, [chart, width]);
+
+  return (
+    <div ref={containerRef}>
+      <div ref={ref}></div>
+    </div>
+  );
 };
 
 export default VolumeChart;

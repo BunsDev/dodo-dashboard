@@ -43,10 +43,10 @@ const DodoStats = ({ blockTimes }) => {
 
   return (
     <section className="flex space-x-10">
-      <div className="bg-white flex-1 rounded-3xl px-8 py-10">
+      <div className="bg-white flex-1 rounded-3xl px-8 py-10 overflow-hidden">
         <LiquidityChart data={volumeData} />
       </div>
-      <div className="bg-white flex-1 rounded-3xl px-8 py-10">
+      <div className="bg-white flex-1 rounded-3xl px-8 py-10 overflow-hidden">
         <VolumeChart data={volumeData} />
       </div>
     </section>
