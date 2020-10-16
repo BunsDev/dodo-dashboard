@@ -30,3 +30,31 @@ h2 {
 th {
   @apply text-left;
 }
+
+.btn {
+  @apply font-medium inline-flex py-3 px-5 rounded transition duration-200;
+}
+
+.tabs {
+  @apply flex;
+}
+
+.tabs li:first-child .btn {
+  @apply rounded-tr-none rounded-br-none;
+}
+
+.tabs li + li {
+  @apply -ml-px;
+}
+
+.tabs li + li .btn {
+  @apply rounded-tl-none rounded-bl-none;
+}
+
+.tabs .btn {
+  @apply border text-sm py-2 px-4 border-gray-300 bg-gray-100;
+}
+
+.tabs .btn.active {
+  @apply border-gray-600 bg-gray-600 text-white;
+}

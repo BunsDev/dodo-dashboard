@@ -94,7 +94,7 @@ const VolumeChart = ({ data, label, type }) => {
         ref.current.innerHTML = "";
       }
     };
-  }, [ref]);
+  }, [data, ref]);
 
   useEffect(() => {
     if (chart) {

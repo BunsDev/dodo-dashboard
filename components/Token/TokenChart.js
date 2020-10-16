@@ -1,3 +1,4 @@
+import { useState } from "react";
 import dayjs from "dayjs";
 import { chartTypes } from "../../constants";
 import useMarketChartData from "./useMarketChartData";
@@ -11,21 +12,48 @@ const getTradingViewData = (data) => {
 };
 
 const TokenChart = () => {
+  const [marketCapVisible, setMarketCapVisible] = useState(false);
   const marketChartData = useMarketChartData("dodo");
+
+  const handleSwitchMarketCap = (showMarketCap) => {
+    setMarketCapVisible(showMarketCap);
+  };
 
   if (!marketChartData) {
     return null;
   }
 
-  const data = getTradingViewData(marketChartData.prices);
-  console.log(dayjs(data[0].time));
+  const data = getTradingViewData(
+    marketCapVisible ? marketChartData.market_caps : marketChartData.prices
+  );
 
   return (
-    <TradingViewChart
-      data={data}
-      label="DODO Token price"
-      type={chartTypes.LINE}
-    />
+    <>
+      <ul className="tabs float-right mt-2">
+        <li>
+          <button
+            className={marketCapVisible ? "btn" : "btn active"}
+            onClick={() => handleSwitchMarketCap(false)}
+          >
+            Price
+          </button>
+        </li>
+        <li>
+          <button
+            className={marketCapVisible ? "btn active" : "btn"}
+            onClick={() => handleSwitchMarketCap(true)}
+          >
+            Market Cap
+          </button>
+        </li>
+      </ul>
+
+      <TradingViewChart
+        data={data}
+        label="DODO Token price"
+        type={chartTypes.LINE}
+      />
+    </>
   );
 };
 
