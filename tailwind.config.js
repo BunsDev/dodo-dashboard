@@ -1,9 +1,9 @@
 module.exports = {
   future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-    // defaultLineHeights: true,
-    // standardFontWeights: true
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+    defaultLineHeights: true,
+    standardFontWeights: true,
   },
   purge: [],
   theme: {
@@ -14,10 +14,10 @@ module.exports = {
           200: "hsl(248, 38%, 95%)",
           300: "hsl(248, 31%, 92%)",
           400: "hsl(248, 25%, 84%)",
-          500: "hsl(248, 20%, 69%)",
-          600: "hsl(248, 22%, 45%)",
-          700: "hsl(248, 25%, 34%)",
-          800: "hsl(248, 27%, 22%)",
+          500: "hsl(248, 13%, 69%)",
+          600: "hsl(248, 12%, 45%)",
+          700: "hsl(248, 15%, 34%)",
+          800: "hsl(248, 22%, 22%)",
           900: "hsl(248, 30%, 13%)",
         },
         yellow: {
