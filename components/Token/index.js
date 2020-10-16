@@ -1,8 +1,6 @@
-import dynamic from "next/dynamic";
+import TokenChart from "./TokenChart";
 
 const Token = () => {
-  const TokenChart = dynamic(() => import("./TokenChart"));
-
   return (
     <>
       <header className="mb-8">

@@ -1,8 +1,8 @@
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import dayjs from "dayjs";
 import { chartTypes } from "../../constants";
 import useMarketChartData from "./useMarketChartData";
-import TradingViewChart from "../TradingViewChart";
 
 const getTradingViewData = (data) => {
   return data.map(([timestamp, value]) => ({
@@ -12,6 +12,8 @@ const getTradingViewData = (data) => {
 };
 
 const TokenChart = () => {
+  const TradingViewChart = dynamic(() => import("../TradingViewChart"));
+
   const [marketCapVisible, setMarketCapVisible] = useState(false);
   const marketChartData = useMarketChartData("dodo");
 
