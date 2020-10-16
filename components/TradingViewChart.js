@@ -1,16 +1,16 @@
 import { useRef, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import Numeral from "numeral";
-import { createChart } from "lightweight-charts";
+import { createChart, TickMarkType } from "lightweight-charts";
 import { chartTypes } from "../constants";
 import { useMeasure } from "react-use";
 
 const dollarFormatter = (num) => {
-  return Numeral(num).format("$0.[00]a");
-};
-
-const fullDollarFormatter = (num) => {
-  return Numeral(num).format("$0,0");
+  if (num > 1000) {
+    return Numeral(num).format("$0,0");
+  } else {
+    return Numeral(num).format("$0.00a");
+  }
 };
 
 const renderChart = (ref, data, type) => {
@@ -30,7 +30,6 @@ const renderChart = (ref, data, type) => {
     },
     priceScale: {
       borderVisible: false,
-      position: "left",
       scaleMargins: {
         bottom: 0,
       },
@@ -74,12 +73,9 @@ const VolumeChart = ({ data, label, type }) => {
     if (!param || !param.time) {
       setTooltipValue(data[data.length - 1].value);
     } else {
-      const entry = data.find(
-        (d) =>
-          d.time.day === param.time.day &&
-          d.time.month === param.time.month &&
-          param.time.year === d.time.year
-      );
+      const entry = data.find((d) => {
+        return dayjs(d.time).isSame(dayjs(param.time));
+      });
       if (entry) {
         setTooltipValue(entry.value);
       }
@@ -108,10 +104,10 @@ const VolumeChart = ({ data, label, type }) => {
   }, [chart, width]);
 
   return (
-    <div ref={containerRef}>
-      <div className="pl-4 font-medium mb-1 text-gray-600">{label}</div>
-      <div className="pl-4 text-4xl font-bold leading-none mb-8">
-        {fullDollarFormatter(tooltipValue)}
+    <div className="pl-2" ref={containerRef}>
+      <div className="font-medium mb-1 text-gray-600">{label}</div>
+      <div className="text-4xl font-bold leading-none mb-6">
+        {dollarFormatter(tooltipValue)}
       </div>
       <div ref={ref}></div>
     </div>

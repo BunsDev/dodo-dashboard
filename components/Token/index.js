@@ -1,11 +1,19 @@
-const Token = () => (
-  <>
-    <header className="mb-6">
-      <h1>DODO Token</h1>
-    </header>
+import dynamic from "next/dynamic";
 
-    <div className="card">DODO</div>
-  </>
-);
+const Token = () => {
+  const TokenChart = dynamic(() => import("./TokenChart"));
+
+  return (
+    <>
+      <header className="mb-8">
+        <h1>DODO Token</h1>
+      </header>
+
+      <div className="card">
+        <TokenChart />
+      </div>
+    </>
+  );
+};
 
 export default Token;

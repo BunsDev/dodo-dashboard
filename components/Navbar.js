@@ -58,7 +58,7 @@ const Navbar = () => {
         }
       `}</style>
 
-      <nav className="bg-white h-full py-12 w-24 text-center">
+      <nav className="bg-white h-full py-10 w-24 text-center">
         <img
           alt="DODO Logo"
           className="w-16 rounded-full mx-auto"

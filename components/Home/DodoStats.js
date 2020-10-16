@@ -20,7 +20,7 @@ const getVolumeData = (data, blockTimes) => {
       (b) => b.number === blockKey.replace("t", "")
     );
     result.push({
-      time: dayjs.unix(blockTime.timestamp).format("YYYY-MM-DD"),
+      time: Number(blockTime.timestamp),
       value: Math.round(
         value.baseToken.tradeVolumeUSD - previousValue.baseToken.tradeVolumeUSD
       ),
