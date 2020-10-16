@@ -18,7 +18,7 @@ const navLinks = [
   {
     label: "Token",
     icon: () => <TokenIcon />,
-    href: "#",
+    href: "/token",
   },
 ];
 
