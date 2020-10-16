@@ -2,7 +2,9 @@ import { chartTypes } from "../constants";
 import dynamic from "next/dynamic";
 
 const VolumeChart = ({ data }) => {
-  const TradingViewChart = dynamic(() => import("./TradingViewChart"));
+  const TradingViewChart = dynamic(() => import("./TradingViewChart"), {
+    ssr: false,
+  });
 
   return (
     <TradingViewChart data={data} label="Volume (24hr)" type={chartTypes.BAR} />

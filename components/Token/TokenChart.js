@@ -12,7 +12,9 @@ const getTradingViewData = (data) => {
 };
 
 const TokenChart = () => {
-  const TradingViewChart = dynamic(() => import("../TradingViewChart"));
+  const TradingViewChart = dynamic(() => import("../TradingViewChart"), {
+    ssr: false,
+  });
 
   const [marketCapVisible, setMarketCapVisible] = useState(false);
   const marketChartData = useMarketChartData("dodo");

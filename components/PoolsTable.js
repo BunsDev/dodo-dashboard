@@ -53,7 +53,7 @@ export default function Pools() {
     <table className="table table-clickable table-auto w-full">
       <thead>
         <tr>
-          <tr />
+          <th />
           <th>Name</th>
           <th>Liquidity</th>
           <th>Volume (24hr)</th>
