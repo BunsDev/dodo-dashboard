@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { timeframeOptions } from "../constants";
+import Numeral from "numeral";
 
 export function getTimestampRange(timeframe) {
   const timestamps = [];
@@ -13,3 +13,11 @@ export function getTimestampRange(timeframe) {
 
   return timestamps.reverse();
 }
+
+export const dollarFormatter = (num) => {
+  if (num > 1000) {
+    return Numeral(num).format("$0,0");
+  } else {
+    return Numeral(num).format("$0.00a");
+  }
+};

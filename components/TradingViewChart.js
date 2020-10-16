@@ -1,17 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import dayjs from "dayjs";
-import Numeral from "numeral";
-import { createChart, TickMarkType } from "lightweight-charts";
-import { chartTypes } from "../constants";
 import { useMeasure } from "react-use";
-
-const dollarFormatter = (num) => {
-  if (num > 1000) {
-    return Numeral(num).format("$0,0");
-  } else {
-    return Numeral(num).format("$0.00a");
-  }
-};
+import dayjs from "dayjs";
+import { createChart } from "lightweight-charts";
+import { chartTypes } from "../constants";
+import { dollarFormatter } from "../utils";
 
 const renderChart = (ref, data, type) => {
   const chart = createChart(ref.current, {

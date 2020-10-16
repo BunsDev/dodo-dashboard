@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
+import { dollarFormatter } from "../utils";
 
 export const ALL_POOLS_QUERY = gql`
   query allPools {
@@ -23,11 +24,14 @@ export const ALL_POOLS_QUERY = gql`
 
 const Pool = ({ pair }) => (
   <tr>
-    <td>
+    <td className="w-10">
+      <img src="/images/dodo-token.svg" />
+    </td>
+    <td className="font-medium">
       {pair.baseToken.symbol}-{pair.quoteToken.symbol}
     </td>
-    <td>{pair.quoteToken.totalLiquidity}</td>
-    <td>{pair.quoteToken.tradeVolumeUSD}</td>
+    <td>{dollarFormatter(pair.quoteToken.totalLiquidity)}</td>
+    <td>{dollarFormatter(pair.quoteToken.tradeVolumeUSD)}</td>
   </tr>
 );
 
@@ -40,9 +44,10 @@ export default function Pools() {
   const { pairs } = data;
 
   return (
-    <table className="table-auto w-full">
+    <table className="table table-auto w-full">
       <thead>
         <tr>
+          <tr />
           <th>Name</th>
           <th>Liquidity</th>
           <th>Volume (24hr)</th>

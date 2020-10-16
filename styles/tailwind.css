@@ -58,3 +58,8 @@ th {
 .tabs .btn.active {
   @apply border-gray-600 bg-gray-600 text-white;
 }
+
+.table td,
+.table th {
+  @apply p-2;
+}
