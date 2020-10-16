@@ -33,7 +33,7 @@ const Navbar = () => {
         }
 
         .nav-link {
-          @apply text-gray-500 flex flex-col text-xs items-center justify-center h-20 rounded transition-all duration-200;
+          @apply text-gray-500 flex flex-col font-medium text-xs items-center justify-center h-20 rounded transition-all duration-200;
         }
 
         .nav-link .icon {
