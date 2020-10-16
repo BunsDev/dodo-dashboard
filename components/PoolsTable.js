@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
 import { dollarFormatter } from "../utils";
@@ -22,8 +23,8 @@ export const ALL_POOLS_QUERY = gql`
   }
 `;
 
-const Pool = ({ pair }) => (
-  <tr>
+const Pool = ({ onClickPool, pair }) => (
+  <tr onClick={() => onClickPool(pair)}>
     <td className="w-10">
       <img src="/images/dodo-token.svg" />
     </td>
@@ -37,6 +38,11 @@ const Pool = ({ pair }) => (
 
 export default function Pools() {
   const { loading, error, data } = useQuery(ALL_POOLS_QUERY);
+  const router = useRouter();
+
+  const handleClickPool = (pair) => {
+    router.push(`/pools/${pair.baseToken.symbol}${pair.quoteToken.symbol}`);
+  };
 
   if (error) return <ErrorMessage message="Error loading posts." />;
   if (loading) return <div>Loading…</div>;
@@ -44,7 +50,7 @@ export default function Pools() {
   const { pairs } = data;
 
   return (
-    <table className="table table-auto w-full">
+    <table className="table table-clickable table-auto w-full">
       <thead>
         <tr>
           <tr />
@@ -55,7 +61,7 @@ export default function Pools() {
       </thead>
       <tbody>
         {pairs.map((pair) => (
-          <Pool key={pair.id} pair={pair} />
+          <Pool key={pair.id} pair={pair} onClickPool={handleClickPool} />
         ))}
       </tbody>
     </table>

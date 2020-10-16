@@ -63,3 +63,32 @@ th {
 .table th {
   @apply p-2;
 }
+
+.table-clickable tr {
+  @apply cursor-pointer;
+}
+
+.table-clickable td {
+  @apply transition duration-200;
+}
+
+.table-clickable td:last-child {
+  @apply relative;
+}
+
+.table-clickable td:last-child::after {
+  @apply border border-gray-600 border-l-0 border-b-0;
+  content: "";
+  display: block;
+  height: 8px;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: rotate(45deg);
+  width: 8px;
+}
+
+.table-clickable tr:hover td {
+  @apply bg-gray-100;
+}
