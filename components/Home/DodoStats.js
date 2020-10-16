@@ -5,7 +5,7 @@ import { getPoolQuery } from "../../lib/queries";
 import injectBlockTimes from "../injectBlockTimes";
 import LiquidityChart from "../LiquidityChart";
 import VolumeChart from "../VolumeChart";
-import Pools from "./Pools";
+import PoolsTable from "../PoolsTable";
 
 const getVolumeData = (data, blockTimes) => {
   const result = [];
@@ -68,7 +68,7 @@ const DodoStats = ({ blockTimes }) => {
       <h2 className="mb-4">Pools</h2>
 
       <Card>
-        <Pools />
+        <PoolsTable />
       </Card>
     </>
   );

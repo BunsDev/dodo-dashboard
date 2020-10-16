@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import ErrorMessage from "../ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 export const ALL_POOLS_QUERY = gql`
   query allPools {

@@ -13,7 +13,7 @@ const navLinks = [
   {
     label: "Pools",
     icon: () => <PoolIcon />,
-    href: "#",
+    href: "/pools",
   },
   {
     label: "Token",
